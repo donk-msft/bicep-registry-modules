@@ -75,7 +75,7 @@ resource avmTelemetry 'Microsoft.Resources/deployments@2024-11-01' = if (enableT
   }
 }
 
-resource email 'Microsoft.Communication/emailServices@2024-09-01-preview' = {
+resource email 'Microsoft.Communication/emailServices@2025-01-25-preview' = {
   name: name
   location: location
   tags: tags

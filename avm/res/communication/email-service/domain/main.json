@@ -6,7 +6,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.26.170.59819",
-      "templateHash": "816675598664027628"
+      "templateHash": "11602453661918542376"
     },
     "name": "Email Services Domains",
     "description": "This module deploys an Email Service Domain"
@@ -203,12 +203,12 @@
     "emailService": {
       "existing": true,
       "type": "Microsoft.Communication/emailServices",
-      "apiVersion": "2024-09-01-preview",
+      "apiVersion": "2025-01-25-preview",
       "name": "[parameters('emailServiceName')]"
     },
     "domain": {
       "type": "Microsoft.Communication/emailServices/domains",
-      "apiVersion": "2024-09-01-preview",
+      "apiVersion": "2025-01-25-preview",
       "name": "[format('{0}/{1}', parameters('emailServiceName'), parameters('name'))]",
       "location": "[parameters('location')]",
       "tags": "[parameters('tags')]",
@@ -293,7 +293,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.26.170.59819",
-              "templateHash": "17827340025096481840"
+              "templateHash": "9106488603497434946"
             },
             "name": "Sender Usernames",
             "description": "This module deploys an Sender"
@@ -334,7 +334,7 @@
           "resources": [
             {
               "type": "Microsoft.Communication/emailServices/domains/senderUsernames",
-              "apiVersion": "2024-09-01-preview",
+              "apiVersion": "2025-01-25-preview",
               "name": "[format('{0}/{1}/{2}', parameters('emailServiceName'), parameters('domainName'), parameters('name'))]",
               "properties": {
                 "username": "[parameters('username')]",

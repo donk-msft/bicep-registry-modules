@@ -12,7 +12,7 @@ This module deploys an Sender
 
 | Resource Type | API Version |
 | :-- | :-- |
-| `Microsoft.Communication/emailServices/domains/senderUsernames` | [2024-09-01-preview](https://learn.microsoft.com/en-us/azure/templates/Microsoft.Communication/2024-09-01-preview/emailServices/domains/senderUsernames) |
+| `Microsoft.Communication/emailServices/domains/senderUsernames` | [2025-01-25-preview](https://learn.microsoft.com/en-us/azure/templates/Microsoft.Communication/emailServices/domains/senderUsernames) |
 
 ## Parameters
 
