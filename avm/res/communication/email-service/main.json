@@ -5,8 +5,8 @@
   "metadata": {
     "_generator": {
       "name": "bicep",
-      "version": "0.32.4.45862",
-      "templateHash": "3909188145621720098"
+      "version": "0.26.170.59819",
+      "templateHash": "7889782586549190569"
     },
     "name": "Email Services",
     "description": "This module deploys an Email Service"
@@ -187,7 +187,7 @@
     "avmTelemetry": {
       "condition": "[parameters('enableTelemetry')]",
       "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2024-03-01",
+      "apiVersion": "2024-11-01",
       "name": "[format('46d3xbcp.res.communication-emailservice.{0}.{1}', replace('-..--..-', '.', '-'), substring(uniqueString(deployment().name, parameters('location')), 0, 4))]",
       "properties": {
         "mode": "Incremental",
@@ -206,7 +206,7 @@
     },
     "email": {
       "type": "Microsoft.Communication/emailServices",
-      "apiVersion": "2023-04-01",
+      "apiVersion": "2024-09-01-preview",
       "name": "[parameters('name')]",
       "location": "[parameters('location')]",
       "tags": "[parameters('tags')]",
@@ -299,8 +299,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.32.4.45862",
-              "templateHash": "4327042524422256200"
+              "version": "0.26.170.59819",
+              "templateHash": "816675598664027628"
             },
             "name": "Email Services Domains",
             "description": "This module deploys an Email Service Domain"
@@ -497,19 +497,22 @@
             "emailService": {
               "existing": true,
               "type": "Microsoft.Communication/emailServices",
-              "apiVersion": "2023-04-01",
+              "apiVersion": "2024-09-01-preview",
               "name": "[parameters('emailServiceName')]"
             },
             "domain": {
               "type": "Microsoft.Communication/emailServices/domains",
-              "apiVersion": "2023-04-01",
+              "apiVersion": "2024-09-01-preview",
               "name": "[format('{0}/{1}', parameters('emailServiceName'), parameters('name'))]",
               "location": "[parameters('location')]",
               "tags": "[parameters('tags')]",
               "properties": {
                 "domainManagement": "[parameters('domainManagement')]",
                 "userEngagementTracking": "[parameters('userEngagementTracking')]"
-              }
+              },
+              "dependsOn": [
+                "emailService"
+              ]
             },
             "domain_lock": {
               "condition": "[and(not(empty(coalesce(parameters('lock'), createObject()))), not(equals(tryGet(parameters('lock'), 'kind'), 'None')))]",
@@ -583,8 +586,8 @@
                   "metadata": {
                     "_generator": {
                       "name": "bicep",
-                      "version": "0.32.4.45862",
-                      "templateHash": "18024083037530918442"
+                      "version": "0.26.170.59819",
+                      "templateHash": "17827340025096481840"
                     },
                     "name": "Sender Usernames",
                     "description": "This module deploys an Sender"
@@ -625,7 +628,7 @@
                   "resources": [
                     {
                       "type": "Microsoft.Communication/emailServices/domains/senderUsernames",
-                      "apiVersion": "2023-04-01",
+                      "apiVersion": "2024-09-01-preview",
                       "name": "[format('{0}/{1}/{2}', parameters('emailServiceName'), parameters('domainName'), parameters('name'))]",
                       "properties": {
                         "username": "[parameters('username')]",
@@ -659,7 +662,8 @@
                 }
               },
               "dependsOn": [
-                "domain"
+                "domain",
+                "emailService"
               ]
             }
           },
@@ -720,7 +724,7 @@
       "metadata": {
         "description": "The location the email service was deployed into."
       },
-      "value": "[reference('email', '2023-04-01', 'full').location]"
+      "value": "[reference('email', '2024-09-01-preview', 'full').location]"
     },
     "domainResourceIds": {
       "type": "array",
